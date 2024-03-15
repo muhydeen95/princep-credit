@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../partials/variables.scss";
+@import "../partials/button.scss";
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+input,
+select {
+    width: 100%;
+    height: 4.8rem;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    color: $black-100;
+    padding: 1.35rem 1.6rem;
+    background: rgba($black-100, 0.07);
+    border: none;
+    &.is-invalid {
+      border: 0.1rem solid $error !important;
+      background: $white-100;
+    }
+    &:focus {
+      background: $white-100;
+      color: $black-100;
+      border: 0.1rem solid rgba($black-100, 0.4);
+      box-shadow: none;
+    }
+}
+
+table.table {
+  width: 100%;;
+  caption {
+    color: $black-100;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  tbody {
+    border-top: none !important;
+    tr {
+      // border: 0.05rem solid $white-200;
+      td {
+        color: $black-100;
+        font-size: 1.4rem;
+        padding: 1.6rem;
+        border: transparent;
+
+      }
+      &:nth-child(odd) {
+        background: $grey-200;
+      }
+      &:nth-child(even) {
+        background: $white-100;
+      }
+    }
+  }
+
+  thead {
+    background-color: $light-pink !important;
+    border-top: none !important;
+    tr {
+      margin: 0;
+      padding: 0;
+    }
+    th {
+      border-bottom: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: $black-100;
+      padding: 1.4rem;
+      text-align: left;
+      margin: 0;
+    }
+  }
+}

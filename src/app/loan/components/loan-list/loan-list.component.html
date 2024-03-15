@@ -1,0 +1,111 @@
+<ng-container *ngIf="loans?.length! > 0">
+  <div class="d-flex justify-content-between table-head">
+    <h4>Loans</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="search-wrapper">
+        <div
+          class="search-wrapper-input me-4 mb-3 form_group"
+        >
+          <span class="_icon">
+            <img src="../../../../assets/images/search 1.svg" />
+          </span>
+          <input
+            #searchQuery
+            type="text"
+            class="form-control mt-0"
+            (keyup)="getSearchQuery(searchQuery.value, $event)"
+            placeholder="Search"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="table-responsive my-5" *ngIf="!isLoading">
+    <table class="table caption-top text-nowrap">
+      <ng-container>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>IPPIS No.</th>
+            <th>Amount</th>
+            <th>Tenor</th>
+            <th>Date</th>
+            <th>Mode</th>
+            <th>MDA Name</th>
+          </tr>
+        </thead>
+      </ng-container>
+      <tbody>
+
+        <ng-container>
+          <tr *ngFor="let loan of loans; index as i">
+            <td>
+              <button class="btn btn-orange btn-md">View</button>
+            </td>
+            <td>
+              {{ loan?.firstname }} {{ loan?.lastname }}
+            </td>
+            <td>
+              {{ loan?.email ?? '--' }}
+            </td>
+            <td>
+              {{ loan?.telephone ?? '--' }}
+            </td>
+            <td>
+              {{ loan?.ippisnumber ?? '--' }}
+            </td>
+            <td>
+              {{ loan?.loan_amount | currency:'N' }}
+            </td>
+            <td>
+              {{ loan?.tenor ?? '--' }}
+            </td>
+            <td>
+              {{ loan?.created_at | date }}
+            </td>
+            <td>
+              {{ loan?.email ?? '--' }}
+            </td>
+            <td>
+              {{ loan?.telephone ?? '--' }}
+            </td>
+          </tr>
+
+        </ng-container>
+
+      </tbody>
+    </table>
+    <div class="pagination my-5">
+      <div>
+        <p>Displaying <span>{{ paginationRes?.per_page }}</span> out of {{ paginationRes?.total  }} results </p>
+      </div>
+      <div class="d-flex">
+        <h4 class="mx-3">{{ paginationRes?.from }} - {{ paginationRes?.to }}</h4>
+        <div>
+          <span (click)="prevPage()" class="toggle prev" [ngClass]="{active: paginationRes?.current_page > 1}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span (click)="nextPage()" class="toggle next" [ngClass]="{active: paginationRes?.current_page >= 1}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-container *ngIf="isLoading">
+    <div class="state_wrapper">
+      <p>No Loan available</p>
+    </div>
+  </ng-container>
+</ng-container>
