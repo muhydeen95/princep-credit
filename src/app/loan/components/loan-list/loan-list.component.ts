@@ -30,7 +30,7 @@ export class LoanListComponent implements OnInit {
     this.isLoading = true;
     const payload = {
       search_text : searchQuery ?? '',
-      page_size: this.searchParam?.page_size ?? 10,
+      page_size: this.searchParam?.page_size ?? 15,
       page: page ?? 1
     }
     this.sub.add(
@@ -50,15 +50,13 @@ export class LoanListComponent implements OnInit {
 
   public prevPage() {
     if (this.paginationRes.current_page > 1) {
-      const currentPage = this.paginationRes.current_page--;
-      this.getLoans('', currentPage);
+      this.getLoans('', this.paginationRes.current_page-1);
     }
   }
 
   public nextPage() {
     if (this.paginationRes.current_page < this.paginationRes.last_page) {
-      const currentPage = this.paginationRes.current_page++;
-      this.getLoans('', currentPage);
+      this.getLoans('', this.paginationRes.current_page+1);
     }
   }
 
