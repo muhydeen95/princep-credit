@@ -58,8 +58,7 @@ export class LoanListComponent implements OnInit {
   public nextPage() {
     if (this.paginationRes.current_page < this.paginationRes.last_page) {
       const currentPage = this.paginationRes.current_page++;
-      console.log(this.paginationRes.current_page, currentPage)
-      this.getLoans('', this.paginationRes.current_page);
+      this.getLoans('', currentPage);
     }
   }
 
